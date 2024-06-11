@@ -12,8 +12,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import random
-import string
 import unittest
 
 import pylxd.exceptions as exceptions
