@@ -25,25 +25,6 @@ class StorageTestCase(IntegrationTestCase):
         if not self.client.has_api_extension("storage"):
             self.skipTest("Required LXD API extension not available!")
 
-    def create_storage_pool(self):
-        # create a storage pool in the form of 'xxx1' as a dir.
-        name = "".join(random.sample(string.ascii_lowercase, 3)) + "1"
-        self.lxd.storage_pools.post(
-            json={
-                "config": {},
-                "driver": "dir",
-                "name": name,
-            }
-        )
-        return name
-
-    def delete_storage_pool(self, name):
-        # delete the named storage pool
-        try:
-            self.lxd.storage_pools[name].delete()
-        except exceptions.NotFound:
-            pass
-
 
 class TestStoragePools(StorageTestCase):
     """Tests for :py:class:`pylxd.models.storage_pools.StoragePools"""
